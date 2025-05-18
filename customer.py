@@ -14,7 +14,15 @@ class Customer:
         if isinstance(value, str) and 1 <= len(value) <= 15:
             self._name = value
         else:
-            raise ValueError("Name must be a string between 1 and 15 characters.")  
+            raise ValueError("Name must be a string between 1 and 15 characters.") 
+
+       
+    def create_order(self, coffee, price):
+        from order import Order
+        return Order(self, coffee, price)
+    
+
+         
 
 
         
