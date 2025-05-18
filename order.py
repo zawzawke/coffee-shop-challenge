@@ -1,8 +1,12 @@
-from customer import Customer
-from coffee import Coffee
-
 class Order:
+    _all = [] #keeps track of all orders
+
     def __init__(self, customer, coffee, price):
+
+        # validations
+        from customer import Customer
+        from coffee import Coffee
+        
         if not isinstance(customer, Customer):
             raise TypeError("customer must be a Customer instance.")
         if not isinstance(coffee, Coffee):
@@ -16,6 +20,8 @@ class Order:
         self._coffee = coffee
         self._price = price # is immutable, has no setter
 
+        Order._all.append(self) #tracks the order instance
+
         @property
         def price(self):
             return self._price
@@ -27,4 +33,8 @@ class Order:
         @property
         def coffee(self):
             return self._coffee
+        
+        @classmethod
+        def all(cls):
+            return cls._all
         
