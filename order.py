@@ -2,6 +2,7 @@ class Order:
     _all = [] #keeps track of all orders
 
     def __init__(self, customer, coffee, price):
+       
 
         # validations
         from customer import Customer
@@ -19,7 +20,6 @@ class Order:
         self._customer = customer
         self._coffee = coffee
         self._price = price # is immutable, has no setter
-
         Order._all.append(self) #tracks the order instance
 
         @property
@@ -33,6 +33,10 @@ class Order:
         @property
         def coffee(self):
             return self._coffee
+        
+        @property
+        def price(self):
+            return self._price
         
         @classmethod
         def all(cls):

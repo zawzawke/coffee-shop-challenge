@@ -9,9 +9,15 @@ class Coffee:
             raise ValueError("Coffee name should be atleast 3 characters long.")
         self._name = name # its immutabale, has no setter
 
-        @property
-        def name(self):
-            return self._name
+    @property
+    def name(self):
+        return self._name
+    
+    def orders(self):
+        return [order for order in Order.all if order.coffee == self]
+    
+    def customers(self):
+        return list({order.customer for order in self.orders()})
 
     def num_orders(self):
         return len(self.orders())
